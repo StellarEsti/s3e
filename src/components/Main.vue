@@ -5,6 +5,7 @@ import Markdown from './sections/Markdown.vue'
 import BibTeX from './sections/BibTeX.vue'
 import Carousel from './sections/Carousel.vue'
 import Video from './sections/Video.vue'
+import Poster from './sections/Poster.vue'
 import ImageSlider from './sections/ImageSlider.vue'
 import ImageSliderInner from './sections/ImageSliderInner.vue'
 import ImageSelector from './sections/ImageSelector.vue'
@@ -21,21 +22,12 @@ export default {
   components: {
     Title,
     Abstract,
+    Poster,
     Markdown,
     BibTeX,
-    Carousel,
     Video,
-    ImageSlider,
-    ImageSliderInner,
-    ImageSelector,
-    Echart,
-    Collapse,
-    Table,
-    SeletionForComparison,
-    Comment,
-    Latex,
-    Model3D,
-    GaussianSplats3D
+    
+
   }
 }
 </script>
@@ -45,6 +37,8 @@ export default {
   <Carousel/>
   <Video/>
   <Abstract/>
+    <!-- Poster: minimal centered image component -->
+    <Poster src="/poster.png" />
   <Markdown/>
   <Latex/>
   <Table/>
@@ -59,3 +53,5 @@ export default {
   <BibTeX/>
   <Comment/>
 </template>
+
+ 

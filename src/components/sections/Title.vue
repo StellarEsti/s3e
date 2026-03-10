@@ -7,13 +7,13 @@ import { Document, Files, MagicStick, Picture, DataAnalysis, Film } from '@eleme
 const logo = './logo.png'
 
 // 标题
-const title = 'Academic Project Page Template'
+const title = 'S^3E: Self-Supervised State Estimation for Radar-Inertial System'
 
 // 标题颜色
 const title_color = '#000000'
 
 // 标题补充，没有则置为''即可
-const title_supp = ' (Vue based)'
+const title_supp = ' (ICCV 2025)'
 
 // 标题补充颜色
 const title_supp_color = '#42B883'
@@ -24,22 +24,28 @@ const btn_color = '#444444'
 // 作者清单（包含作者姓名、头像、主页、地址序号）
 const authors = [
   {
-    name: "Your Name",
-    icon: "./icon/junyaohu.jpg",
-    homepage: "https://junyaohu.github.io/",
-    address_flag: "1,#"
+    name: "Shengpeng Wang",
+    icon: "./icon/wsp.png",
+    homepage: "https://shengpeng.wang/",
+    address_flag: "1"
   },
   {
-    name: "Anya Forger",
-    icon: "./icon/anya.jpg",
-    homepage: "https://www.bilibili.com/video/BV1jv4y1P7Bb",
-    address_flag: "2,#"
+    name: "Yulong Xie",
+    icon: "./icon/xyl.jpg",
+    homepage: "https://metaiot.group/team/",
+    address_flag: "1"
   },
   {
-    name: "BugCat Capoo",
-    icon: "./icon/capoo.webp",
-    homepage: "https://zh.moegirl.org.cn/%E7%8C%AB%E7%8C%AB%E8%99%AB%E5%92%96%E6%B3%A2",
-    address_flag: "1,*"
+    name: "Qing Liao",
+    icon: "./icon/qingliao.jpg",
+    homepage: "https://scholar.google.com/citations?user=umEIUwwAAAAJ&hl=zh-CN",
+    address_flag: "2"
+  },
+  {
+    name: "Wei Wang",
+    icon: "./icon/ww.png",
+    homepage: "https://cs.whu.edu.cn/info/1019/55961.html",
+    address_flag: "3,*"
   },
 ]
 
@@ -47,80 +53,71 @@ const authors = [
 const addresses = [
   {
     address_flag: "1",
-    name: "Home University",
-    icon: "./icon/home.png",
-    homepage: "https://github.com/hmuniversity"
+    name: "Huazhong University of Science and Technology",
+    icon: "./icon/hust.png",
+    homepage: "https://hust.edu.cn/",
   },
   {
     address_flag: "2",
-    name: "IKUN University",
-    icon: "./icon/ikun.avif",
-    homepage: "https://www.bilibili.com/video/BV178411Y7QB"
+    name: "Harbin Institute of Technology",
+    icon: "./icon/hit.png",
+    homepage: "https://www.hit.edu.cn/",
   },
+  {
+    address_flag: "3",
+    name: "Wuhan University",
+    icon: "./icon/whu.png",
+    homepage: "https://whu.edu.cn/",
+  }
 ]
 
 // 共一和通讯提示
 const con_and_corresponding_author = 
-  "#: Equal Contribution. *: Corresponding Author."
+  "*: Corresponding Author."
 
 // 最新消息
 const news = "🔥 [2024-12-15] This template project is still under development."
 
 // 强调内容
 const emphases = [
-  "🎉 [ABCD 2024] Poster",
-  "🥰 欢迎关注“减论”微信公众号/B站/知乎/小红书",
-  "传递人工智能算法科普教育的减约理解",
-  "提升信息效率及认知维度"
+  "🎉 [ICCV 2025] Poster",
+  "🥰 欢迎关注“metaiot”微信公众号",
 ]
 
 // 提供引导资料链接
 const buttons = [
   {
-    disabled: true,
-    name: "Paper",
-    component: Document,
-  },
-  {
-    disabled: true,
-    name: "中译版",
-    component: Document,
-  },
-  {
     disabled: false,
-    name: "Code",
-    link: "https://github.com/JunyaoHu/academic-project-page-template-vue",
-    component: Files,
+    name: "Paper",
+    link: "https://openaccess.thecvf.com/content/ICCV2025/html/Wang_S3E_Self-Supervised_State_Estimation_for_Radar-Inertial_System_ICCV_2025_paper.html",
+    component: Document,
   },
   {
     disabled: false,
     name: "Demo",
-    link: "https://junyaohu.github.io/academic-project-page-template-vue",
-    component: MagicStick,
+    link: "#exVideo",
+    component: Film,
   },
   {
-    disabled: true,
+    disabled: false,
     name: "Poster",
+    link: "#exPoster",
     component: Picture,
   },
-  {
-    disabled: true,
-    name: "Slide",
-    component: DataAnalysis,
-  },
-  {
-    disabled: false,
-    name: "Video (减论)",
-    link: "https://www.bilibili.com/video/BV15XkgYiE73/",
-    component: Film,
-  },
-  {
-    disabled: false,
-    name: "Video (Tutorial)",
-    link: "https://www.bilibili.com/video/BV1oUrfYzEqZ",
-    component: Film,
-  },
+
 ]
+
+import { inject, computed } from 'vue'
+
+const theme = inject('theme')
+const toggleTheme = inject('toggleTheme')
+const themeValue = computed(() => (theme && theme.value) ? theme.value : 'light')
+function onToggle() { if (typeof toggleTheme === 'function') toggleTheme() }
+
+const formattedTitle = computed(() => {
+  if (!title) return ''
+  return title.replace(/S\^3E/g, 'S<sup>3</sup>E')
+})
 
 </script>
 
@@ -128,24 +125,33 @@ const buttons = [
   <div>
 
     <!-- 最新消息提示 -->
-    <el-row justify="center">
+    <!-- <el-row justify="center">
       <el-col :span="24">
         <el-alert title="🔥 This template is still under development." type="success" />
       </el-col>
-    </el-row>
+    </el-row> -->
 
-    <!-- 文章logo -->
-    <el-row v-if="logo" justify="center">
-      <el-image :src="logo" class="logo" fit="cover" />
-    </el-row>
 
     <!-- 文章标题 -->
     <el-row justify="center">
       <el-col :span="20">
         <h1 class="paper-title">
-          <span v-if="title" :style="{color:title_color}"> {{ title }}</span>
+          <span v-if="title" class="paper-main" v-html="formattedTitle"></span>
           <span v-if="title_supp" :style="{color:title_supp_color}"> {{ title_supp }}</span>
         </h1>
+      </el-col>
+    </el-row>
+
+    <!-- 主题切换（放在标题下面） -->
+    <el-row justify="center" class="theme-row">
+      <el-col :span="20" class="theme-col">
+        <div class="theme-toggle-wrapper">
+          <div class="theme-toggle" :class="themeValue" @click="onToggle">
+            <div class="toggle-track">
+              <div class="knob">{{ themeValue === 'dark' ? '🌙' : '☀️' }}</div>
+            </div>
+          </div>
+        </div>
       </el-col>
     </el-row>
 
@@ -203,15 +209,61 @@ const buttons = [
 </template>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap');
 
 /* 文章标题字体、字间距、居中排布、字号 */
 .paper-title {
-  font-family: "MyFont", Verdana, sans-serif;
-  letter-spacing: 2px;
-  font-size: 42px;
-  margin: 32px;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-weight: 700;
+  letter-spacing: 1px;
+  font-size: 44px;
+  margin: 28px;
   text-align: center;
 }
+
+/* 主标题颜色跟随主题文本色：light -> 黑色, dark -> 白色 */
+.paper-main {
+  color: var(--text-color);
+}
+
+/* 标题下方的主题切换容器 */
+.theme-row {
+  margin-top: 0;
+}
+.theme-col {
+  display: flex;
+  justify-content: center;
+}
+.theme-toggle-wrapper {
+  display: inline-block;
+}
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+.theme-toggle .toggle-track {
+  width: 64px;
+  height: 36px;
+  border-radius: 999px;
+  background: rgba(0,0,0,0.08);
+  position: relative;
+}
+.theme-toggle .knob {
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  background: #fff;
+  position: absolute;
+  top: 2px;
+  left: 3px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:16px;
+}
+.theme-toggle.dark .toggle-track { background: rgba(255,255,255,0.12); }
+.theme-toggle.dark .knob { left: 29px; }
 
 /* 姓名和地址按钮 */
 .title-button {

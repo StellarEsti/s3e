@@ -1,3 +1,13 @@
 # Abstract
 
-Aute amet minim mollit nisi adipisicing cupidatat. Duis sit tempor consequat ea nisi qui consequat deserunt. Officia duis sit mollit dolor officia occaecat. Minim aute excepteur nostrud adipisicing magna nisi amet. Laborum aliqua ut ex cillum qui ipsum tempor officia sunt. Reprehenderit est ex sit fugiat laborum reprehenderit proident deserunt sint pariatur cillum voluptate irure. Voluptate laboris velit veniam exercitation sunt eiusmod occaecat velit fugiat ad.
+Millimeter-wave radar for state estimation is gaining significant attention for its affordability and reliability in harsh
+conditions. Existing localization solutions typically rely on post-processed radar point clouds as landmark points.
+Nonetheless, the inherent sparsity of radar point clouds, ghost points from multi-path effects, and limited angle res-
+olution in single-chirp radar severely degrade state estimation performance. To address these issues, we propose S3E,
+a Self-Supervised State Estimator that employs more richly informative radar signal spectra to bypass sparse points
+and fuses complementary inertial information to achieve accurate localization. S3E fully explores the association be-
+tween exteroceptive radar and proprioceptive inertial sensor to achieve complementary benefits. To deal with limited
+angle resolution, we introduce a novel cross-fusion technique that enhances spatial structure information by ex-
+ploiting subtle rotational shift correlations across heterogeneous data. The experimental results demonstrate our
+method achieves robust and accurate performance without relying on localization ground truth supervision. To the best
+of our knowledge, this is the first attempt to achieve state estimation by fusing radar spectra and inertial data in a complementary self-supervised manner

@@ -2,6 +2,7 @@
 
 import { ElIcon } from 'element-plus'
 import { HomeFilled, SuccessFilled } from '@element-plus/icons-vue'
+import { inject } from 'vue'
 
 // 个人主页
 const home = {
@@ -29,6 +30,13 @@ const more_paper = {
         name: "ControlNet - ICCV 2023",
         link: "https://github.com/lllyasviel/ControlNet",
     }
+}
+
+const theme = inject('theme')
+const toggleTheme = inject('toggleTheme')
+
+function onToggle() {
+  if (typeof toggleTheme === 'function') toggleTheme()
 }
 
 </script>
@@ -70,6 +78,14 @@ const more_paper = {
             </el-menu-item>
         </el-sub-menu>
 
+        <!-- 主题切换器 -->
+        <el-menu-item index="theme-toggle" class="theme-toggle-item" @click="onToggle">
+            <div class="theme-toggle" :class="theme">
+                <div class="toggle-track">
+                    <div class="knob">{{ theme === 'dark' ? '🌙' : '☀️' }}</div>
+                </div>
+            </div>
+        </el-menu-item>
     </el-menu>
     </el-affix>
 </template>
@@ -112,6 +128,11 @@ const more_paper = {
     --el-menu-horizontal-height: 50px;
 }
 
+/* 把主题切换器推到右侧 */
+.el-menu--horizontal > .theme-toggle-item {
+    margin-left: auto;
+}
+
 /* 取消鼠标焦点悬浮在链接上的颜色装饰 */
 a:hover {
   color: inherit;
@@ -122,6 +143,48 @@ a:hover {
 a {
 	text-decoration: None;
 	color: inherit;
+}
+
+/* 胶囊切换器样式 */
+.theme-toggle-item {
+    cursor: pointer;
+    padding: 10px 16px;
+}
+.theme-toggle {
+    display: inline-flex;
+    align-items: center;
+}
+.theme-toggle .toggle-track {
+    width: 46px;
+    height: 24px;
+    border-radius: 999px;
+    background: rgba(0,0,0,0.08);
+    position: relative;
+    transition: background .2s ease;
+}
+.theme-toggle .knob {
+    width: 20px;
+    height: 20px;
+    border-radius: 999px;
+    background: #fff;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    transition: left .18s ease, background .18s ease, transform .18s ease;
+}
+.theme-toggle .knob {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+}
+.theme-toggle.dark .toggle-track {
+    background: rgba(255,255,255,0.12);
+}
+.theme-toggle.dark .knob {
+    left: 24px;
+    background: #fff;
 }
 
 </style>
