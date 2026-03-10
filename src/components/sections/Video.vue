@@ -2,13 +2,14 @@
 import { ref, onMounted } from 'vue'
 
 const base = import.meta.env.BASE_URL
+const baseNoSlash = base.endsWith('/') ? base.slice(0, -1) : base
 const videos = [
-  { src: `${base}/video/Camera.mp4`, title: 'Scene', badge: 'Camera' },
-  { src: `${base}/video/EKF-RIO.mp4`, title: 'EKF-RIO', badge: 'Point-based RIO' },
-  { src: `${base}/video/PG-RIO.mp4`, title: 'PG-RIO', badge: 'Point-based RIO' },
-  { src: `${base}/video/4D-RIO.mp4`, title: '4D-RIO', badge: 'Point-based RIO' },
-  { src: `${base}/video/Ours.mp4`, title: 'Ours', badge: 'Spectra-Based RIO' },
-  { src: `${base}/video/LiDAR_SLAM.mp4`, title: 'LiDAR Odometry', badge: 'LIO' },
+  { src: `${baseNoSlash}/video/Camera.mp4`, title: 'Scene', badge: 'Camera' },
+  { src: `${baseNoSlash}/video/EKF-RIO.mp4`, title: 'EKF-RIO', badge: 'Point-based RIO' },
+  { src: `${baseNoSlash}/video/PG-RIO.mp4`, title: 'PG-RIO', badge: 'Point-based RIO' },
+  { src: `${baseNoSlash}/video/4D-RIO.mp4`, title: '4D-RIO', badge: 'Point-based RIO' },
+  { src: `${baseNoSlash}/video/Ours.mp4`, title: 'Ours', badge: 'Spectra-Based RIO' },
+  { src: `${baseNoSlash}/video/LiDAR_SLAM.mp4`, title: 'LiDAR Odometry', badge: 'LIO' },
 ]
 
 const selectedIdx = ref(Math.max(0, videos.findIndex(v => v.title === 'Ours')))

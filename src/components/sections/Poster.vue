@@ -26,5 +26,10 @@ const props = defineProps({
 <style scoped>
 .poster{ text-align:center; margin:1px 0; }
 .poster img{ width:90%; max-width:100%; height:auto; display:inline-block; }
-.section-title{ font-size:28px; text-align:center; margin:1px 0; }
+.section-title{
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-size:28px;
+  text-align:center;
+  margin:1px 0;
+}
 </style>
