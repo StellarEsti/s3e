@@ -28,6 +28,13 @@ export default {
     Video,
     
 
+  },
+  data() {
+    const rawBase = import.meta.env.BASE_URL || '/'
+    const base = rawBase.endsWith('/') ? rawBase : `${rawBase}/`
+    return {
+      posterSrc: `${base}poster.png`
+    }
   }
 }
 </script>
@@ -38,7 +45,7 @@ export default {
   <Video/>
   <Abstract/>
     <!-- Poster: minimal centered image component -->
-    <Poster src="/poster.png" />
+    <Poster :src="posterSrc" />
   <Markdown/>
   <Latex/>
   <Table/>
